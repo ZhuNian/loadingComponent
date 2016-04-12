@@ -1,6 +1,7 @@
 var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
+var hbs  = require('express-hbs');
 
 var app = express();
 var ROOT_DIR = __dirname;
@@ -9,14 +10,17 @@ var PORT = 3000;
 
 boot(app, 'boot');
 
+var loadCom = require('./routes/loadCom');
 var users = require('./routes/users');
 var index = require('./routes/index');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
+app.set('view engine', 'html');
+app.engine('html', hbs.express3());
 
-app.use('/index', index);
+app.use(loadCom);
+//app.use('/index', index);
 app.use('/users', users);
 
 if(require.main === module) {
