@@ -8,6 +8,7 @@ var ROOT_DIR = __dirname;
 var boot = require('express-app-boot')(ROOT_DIR);
 var PORT = 3000;
 
+app.use(express.static('public'));
 boot(app, 'boot');
 
 var loadCom = require('./routes/loadCom');
