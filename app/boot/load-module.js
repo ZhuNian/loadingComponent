@@ -1,4 +1,5 @@
 var moduleServ = require('express-module-serv');
+var path = require('path');
 
 module.exports = function loadModule(app, params) {
 	console.log('loadModule is working');
@@ -7,7 +8,7 @@ module.exports = function loadModule(app, params) {
 	  loaderPath: '/mloader.js', //default
 	  pathSettings: {
 	    // requried
-			base: __dirname + '/scripts'
+			base:  path.join(__dirname, '../public/scripts')
 	  }
 });
 };

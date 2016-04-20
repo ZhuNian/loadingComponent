@@ -2,7 +2,6 @@ var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
 var hbs  = require('express-hbs');
-var moduleServ = require('express-module-serv');
 
 var app = express();
 var ROOT_DIR = __dirname;
@@ -10,18 +9,6 @@ var boot = require('express-app-boot')(ROOT_DIR);
 var PORT = 3000;
 
 app.use(express.static('app/public'));
-moduleServ(app, {
-    routePath: '/m', //default
-    loaderPath: '/mloader.js', //default
-    pathSettings: {
-        // requried
-        base: __dirname + '/public/scripts',
-        // optional prefix path settings
-        path: {
-            css: __dirname + '/styles'
-        }
-    }
-});
 
 boot(app, 'boot');
 

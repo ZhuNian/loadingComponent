@@ -1,0 +1,17 @@
+before:
+  - path: init
+    name: initializing app
+
+  - path: load-module
+    name: add load module route
+    params:
+      routePath: /m
+      loaderPath: /m-loader.js
+      pathSettings:
+        base: ./public/scripts
+        paths:
+          css: ../styles
+      transformerSettings:
+        cssWrapper:
+          staticPath: ./app/public
+          routePath: ./
