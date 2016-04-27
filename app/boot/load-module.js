@@ -1,14 +1,25 @@
 var moduleServ = require('express-module-serv');
 var path = require('path');
+var cmdWrapper = require('express-module-serv/transformers/cmd-wrapper');
+var cssWrapper = require('express-module-serv/transformers/css-wrapper');
+var addComma = require('express-module-serv/transformers/add-comma');
 
 module.exports = function loadModule(app, params) {
 	console.log('loadModule is working');
+	var transformers = [
+		cssWrapper(),
+		cmdWrapper(),
+		addComma()
+	];
+	params.transformers = transformers;
+
 	moduleServ(app, {
-	  routePath: '/m', //default 
-	  loaderPath: '/mloader.js', //default
+	  routePath: params.routePath,
+	  loaderPath: params.loaderPath,
 	  pathSettings: {
-	    // requried
-			base:  path.join(__dirname, '../public/scripts')
-	  }
+			base:  path.resolve(__dirname, params.pathSettings.base),
+			paths: params.pathSettings.paths
+	  },
+		transformers: params.transformers
 });
 };

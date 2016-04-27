@@ -6,11 +6,11 @@ before:
     name: add load module route
     params:
       routePath: /m
-      loaderPath: /m-loader.js
+      loaderPath: /mloader.js
       pathSettings:
-        base: ./public/scripts
+        base: ../public/scripts
         paths:
-          css: ../styles
+          css: ../stylesheets
       transformerSettings:
         cssWrapper:
           staticPath: ./app/public
